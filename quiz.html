@@ -5,13 +5,6 @@
 <link rel="icon" type="x-icon" href="icon.png">
 <link rel="shortcut icon" type="x-icon" href="icon.png">
 <meta charset="utf-8">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6511426299019766",
-    enable_page_level_ads: true
-  });
-</script>
 </head>
 <body>
 <script type="application/javascript"
@@ -54,6 +47,7 @@ stats"></a></div></noscript>
     econ = dipl = govt = scty = 0;
     var qn = 0; // Question number
     var prev_answer = null;
+    var answers = new Array(questions.length);
     init_question();
     for (var i = 0; i < questions.length; i++) {
         max_econ += Math.abs(questions[i].effect.econ)
@@ -79,6 +73,7 @@ stats"></a></div></noscript>
         dipl += mult*questions[qn].effect.dipl
         govt += mult*questions[qn].effect.govt
         scty += mult*questions[qn].effect.scty
+        answers[qn] = (2 - mult*2)|0
         qn++;
         prev_answer = mult;
         if (qn < questions.length) {
@@ -109,6 +104,7 @@ stats"></a></div></noscript>
             + `&d=${calc_score(dipl,max_dipl)}`
             + `&g=${calc_score(govt,max_govt)}`
             + `&s=${calc_score(scty,max_scty)}`
+            + `&a=${answers.join('')}`
     }
 </script>
 </body>
